@@ -18,7 +18,7 @@
     "apiKeyPlaceholder": "Please enter OpenAI API key",
     "baseURL": "API Base URL",
     "baseURLRequired": "Please enter API base URL",
-    "baseURLPlaceholder": "Example: https://api.hyperbolic.xyz/v1",
+    "baseURLPlaceholder": "Example: https://api.together.xyz/v1",
     "ollamaURL": "Ollama API URL",
     "ollamaURLRequired": "Please enter Ollama API URL",
     "ollamaURLPlaceholder": "Example: http://localhost:11434/api",

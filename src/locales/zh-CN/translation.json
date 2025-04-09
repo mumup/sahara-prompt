@@ -18,7 +18,7 @@
     "apiKeyPlaceholder": "请输入OpenAI API密钥",
     "baseURL": "API基础URL",
     "baseURLRequired": "请输入API基础URL",
-    "baseURLPlaceholder": "例如：https://api.hyperbolic.xyz/v1",
+    "baseURLPlaceholder": "例如：https://api.together.xyz/v1",
     "ollamaURL": "Ollama API URL",
     "ollamaURLRequired": "请输入Ollama API URL",
     "ollamaURLPlaceholder": "例如：http://localhost:11434/api",

@@ -45,7 +45,7 @@ function App() {
   // 状态管理
   const [apiKey, setApiKey] = useState('');
   const [apiType, setApiType] = useState('openai');
-  const [baseURL, setBaseURL] = useState('https://api.hyperbolic.xyz/v1');
+  const [baseURL, setBaseURL] = useState('https://api.together.xyz/v1');
   const [ollamaURL, setOllamaURL] = useState('http://localhost:11434/api');
   const [userQuestion, setUserQuestion] = useState([]);
   const [temperature, setTemperature] = useState(0.7); // 添加temperature状态变量
@@ -89,7 +89,7 @@ function App() {
       try {
         const config = JSON.parse(savedApiConfig);
         setApiType(config.type || 'openai');
-        setBaseURL(config.baseURL || 'https://api.hyperbolic.xyz/v1');
+        setBaseURL(config.baseURL || 'https://api.together.xyz/v1');
         setOllamaURL(config.ollamaURL || 'http://localhost:11434/api');
         setApiConfig(config);
       } catch (error) {

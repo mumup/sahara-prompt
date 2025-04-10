@@ -65,7 +65,7 @@ export const getModelsList = async () => {
       const curr = response.data.length > 0 ? response.data : response.body
 
       return curr
-        .filter(model => /qwen|llama/.test(model.id))
+        .filter(model => /qwen|llama/i.test(model.id))
         .map(model => ({
           value: model.id,
           label: model.id

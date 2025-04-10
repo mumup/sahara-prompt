@@ -72,9 +72,9 @@ export const getModelsList = async () => {
         }));
     } else {
       // 从Ollama获取模型列表
-      const response = await fetch(`${apiConfig.ollamaURL}/tags`);
-      const data = await response.json();
-      return data.models.map(model => ({
+      const response = await ollama.list();
+
+      return response.models.map(model => ({
         value: model.name,
         label: model.name
       }));

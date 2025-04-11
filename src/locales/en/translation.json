@@ -35,6 +35,7 @@
     "userQuestionRequired": "Please select at least one user question",
     "userQuestionPlaceholder": "Please select user questions",
     "selectModel": "Select Model",
+    "selectModelPlaceholder": "Please select model",
     "selectModelRequired": "Please select a model",
     "promptMode": "Prompt Mode",
     "singlePrompt": "Single Prompt",

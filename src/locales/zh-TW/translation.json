@@ -35,6 +35,7 @@
     "userQuestionRequired": "請選擇至少一個用戶提問",
     "userQuestionPlaceholder": "請選擇用戶提問",
     "selectModel": "選擇模型",
+    "selectModelPlaceholder": "選選擇模型",
     "selectModelRequired": "請選擇模型",
     "promptMode": "提示詞模式",
     "singlePrompt": "單個提示詞",

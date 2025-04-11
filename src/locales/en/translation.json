@@ -30,6 +30,7 @@
     "openaiKeyRequired": "A valid API key is required when using OpenAI"
   },
   "test": {
+    "streamResponse": "Enable streaming response",
     "title": "Test Configuration",
     "userQuestion": "User Questions",
     "userQuestionRequired": "Please select at least one user question",
@@ -61,7 +62,8 @@
     "promptLabel": "Prompt:",
     "questionLabel": "Question:",
     "copySuccess": "Prompt copied to clipboard",
-    "copyFailed": "Copy failed, please copy manually"
+    "copyFailed": "Copy failed, please copy manually",
+    "generatingResponse": "Generating response..."
   },
   "language": {
     "title": "Language",

@@ -37,6 +37,7 @@
     "selectModel": "选择模型",
     "selectModelPlaceholder": "请选择模型",
     "selectModelRequired": "请选择模型",
+    "streamResponse": "启用流式响应",
     "promptMode": "提示词模式",
     "singlePrompt": "单个提示词",
     "promptCollection": "提示词集合 (JSON)",
@@ -61,7 +62,8 @@
     "promptLabel": "提示词:",
     "questionLabel": "问题:",
     "copySuccess": "提示词已复制到剪贴板",
-    "copyFailed": "复制失败，请手动复制"
+    "copyFailed": "复制失败，请手动复制",
+    "generatingResponse": "正在生成响应..."
   },
   "language": {
     "title": "语言",

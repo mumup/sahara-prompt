@@ -92,9 +92,11 @@ export const getModelsList = async () => {
  * @param {string} jailbreakPrompt - 越狱提示词
  * @param {string} model - 使用的模型
  * @param {number} temperature - 温度参数，控制输出的随机性 (默认: 0.7)
+ * @param {boolean} stream - 是否使用流式响应 (默认: false)
+ * @param {function} onStreamData - 流式响应数据回调函数 (stream为true时必须提供)
  * @returns {Promise<string>} - 模型响应
  */
-export const testJailbreakPrompt = async (userQuestion, jailbreakPrompt, model, temperature = 0.7) => {
+export const testJailbreakPrompt = async (userQuestion, jailbreakPrompt, model, temperature = 0.7, stream = false, onStreamData = null) => {
   if (!apiInstance) {
     throw new Error('API客户端未初始化，请先设置API密钥');
   }
@@ -102,30 +104,92 @@ export const testJailbreakPrompt = async (userQuestion, jailbreakPrompt, model, 
   try {
     if (apiConfig.type === 'openai') {
       // 使用OpenAI API
-      const response = await apiInstance.chat.completions.create({
-        model,
-        messages: [
-          { role: 'system', content: jailbreakPrompt },
-          { role: 'user', content: userQuestion }
-        ],
-        // temperature,
-      });
+      if (stream) {
+        // 流式响应处理
+        if (!onStreamData || typeof onStreamData !== 'function') {
+          throw new Error('使用流式响应时必须提供onStreamData回调函数');
+        }
+        
+        let fullContent = '';
+        const response = await apiInstance.chat.completions.create({
+          model,
+          messages: [
+            { role: 'system', content: jailbreakPrompt },
+            { role: 'user', content: userQuestion }
+          ],
+          // temperature,
+          stream: true
+        });
+        
+        for await (const chunk of response) {
+          const content = chunk.choices[0]?.delta?.content || '';
+          if (content) {
+            fullContent += content;
+            onStreamData(content, fullContent);
+          }
+        }
+        
+        return fullContent;
+      } else {
+        // 非流式响应处理
+        const response = await apiInstance.chat.completions.create({
+          model,
+          messages: [
+            { role: 'system', content: jailbreakPrompt },
+            { role: 'user', content: userQuestion }
+          ],
+          // temperature,
+        });
 
-      return response.choices[0].message.content;
+        return response.choices[0].message.content;
+      }
     } else {
       // 使用Ollama API通过ollama/browser库
-      const response = await ollama.chat({
-        model,
-        messages: [
-          { role: 'system', content: jailbreakPrompt },
-          { role: 'user', content: userQuestion }
-        ],
-        options: {
-          // temperature
+      if (stream) {
+        // 流式响应处理
+        if (!onStreamData || typeof onStreamData !== 'function') {
+          throw new Error('使用流式响应时必须提供onStreamData回调函数');
         }
-      });
+        
+        let fullContent = '';
+        const response = await ollama.chat({
+          model,
+          messages: [
+            { role: 'system', content: jailbreakPrompt },
+            { role: 'user', content: userQuestion }
+          ],
+          options: {
+            // temperature
+          },
+          stream: true
+        });
+        
+        for await (const chunk of response) {
+          const content = chunk.message?.content || '';
+          if (content) {
+            // Ollama的流式响应可能会返回完整内容而不是增量内容，需要处理
+            const newContent = content.substring(fullContent.length);
+            fullContent = content;
+            onStreamData(newContent, fullContent);
+          }
+        }
+        
+        return fullContent;
+      } else {
+        // 非流式响应处理
+        const response = await ollama.chat({
+          model,
+          messages: [
+            { role: 'system', content: jailbreakPrompt },
+            { role: 'user', content: userQuestion }
+          ],
+          options: {
+            // temperature
+          }
+        });
 
-      return response.message.content;
+        return response.message.content;
+      }
     }
   } catch (error) {
     console.error(`${apiConfig.type === 'openai' ? 'OpenAI' : 'Ollama'} API调用失败:`, error);

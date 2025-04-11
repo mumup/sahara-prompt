@@ -37,8 +37,9 @@
     "selectModel": "選擇模型",
     "selectModelPlaceholder": "選選擇模型",
     "selectModelRequired": "請選擇模型",
-    "promptMode": "提示詞模式",
     "singlePrompt": "單個提示詞",
+    "streamResponse": "啟用流式響應",
+    "promptMode": "提示詞模式",
     "promptCollection": "提示詞集合 (JSON)",
     "jailbreakPrompt": "越獄提示詞",
     "jailbreakPromptCollection": "越獄提示詞集合 (JSON格式)",
@@ -61,7 +62,8 @@
     "promptLabel": "提示詞:",
     "questionLabel": "問題:",
     "copySuccess": "提示詞已複製到剪貼板",
-    "copyFailed": "複製失敗，請手動複製"
+    "copyFailed": "複製失敗，請手動複製",
+    "generatingResponse": "正在生成響應..."
   },
   "language": {
     "title": "語言",
